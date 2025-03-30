@@ -1,0 +1,51 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "preLaunchTask": "${defaultBuildTask}",
+            "type": "probe-rs-debug",
+            "request": "launch",
+            "name": "probe-rs-debugger-test",
+            "chip": "RP2040",
+            "connectUnderReset": false,
+            "coreConfigs": [
+                {
+                    "coreIndex": 0,
+                    "programBinary": "${workspaceFolder}/target/thumbv6m-none-eabi/debug/embassy_rp_w_template",
+                    "svdFile": "${workspaceFolder}/svd_files/RP2040.svd",
+                    "rttEnabled": true,
+                    "rttChannelFormats": [
+                        {
+                            "dataFormat": "String",
+                            "channelNumber": 0,
+                            "showTimestamps": false
+                        },
+                        {
+                            "dataFormat": "BinaryLE",
+                            "channelNumber": 1
+                        }
+                    ]
+                }
+            ],
+            "flashingConfig": {
+                "flashingEnabled": true,
+                "haltAfterReset": false
+            },
+            // "server": "127.0.0.1:50000", // OPTIONAL: For connecting to an existing probe-rs-debugger process.
+            "consoleLogLevel": "Debug",
+            "sourceFileMap": {
+                "/rustc/4eb161250": "C:/Users/mchol/.rustup/toolchains/stable-x86_64-pc-windows-gnu/lib/rustlib/src/rust"
+            },
+            "wireProtocol": "Swd",
+            // "env": {
+            // "RUST_LOG": "debug",
+            // "DEFMT_LOG": "debug"
+            // },
+            "speed": 10000, // CONFIGURE: Optionally update USB speed
+            "runtimeExecutable": "probe-rs",
+            "runtimeArgs": [
+                "dap-server"
+            ]
+        }
+    ]
+}
