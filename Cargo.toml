@@ -58,45 +58,45 @@ cyw43-pio = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy.gi
     "overclock",
 ] }
 
-defmt = "0.3"
-defmt-rtt = "0.4"
-fixed = "1.23.1"
-fixed-macro = "1.2"
+defmt = "0.3.10"
+defmt-rtt = "0.4.2"
+fixed = "1.29.0"
+fixed-macro = "1.2.0"
 
 # for web request example
-reqwless = { version = "0.12.0", features = ["defmt"] }
-serde = { version = "1.0.203", default-features = false, features = ["derive"] }
-serde-json-core = "0.5.1"
+reqwless = { version = "0.13.0", features = ["defmt"] }
+serde = { version = "1.0.219", default-features = false, features = ["derive"] }
+serde-json-core = "0.6.0"
 
 assign-resources = { git = "https://github.com/adamgreig/assign-resources", rev = "94ad10e2729afdf0fd5a77cd12e68409a982f58a" }
 
 # for assign resources example
 #cortex-m = { version = "0.7.6", features = ["critical-section-single-core"] }
 cortex-m = { version = "0.7.6", features = ["inline-asm"] }
-cortex-m-rt = "0.7.0"
+cortex-m-rt = "0.7.5"
 critical-section = "1.2"
 panic-probe = { version = "0.3", features = ["print-defmt"] }
-display-interface-spi = "0.4.1"
+display-interface-spi = "0.5.0"
 embedded-graphics = "0.8.1"
-st7789 = "0.6.1"
-display-interface = "0.4.1"
-byte-slice-cast = { version = "1.2.0", default-features = false }
-smart-leds = "0.3.0"
+st7789 = "0.7.0"
+display-interface = "0.5.0"
+byte-slice-cast = { version = "1.2.3", default-features = false }
+smart-leds = "0.4.0"
 heapless = { version = "0.8", features = ["serde"] }
 usbd-hid = "0.8.1"
 
 embedded-hal-1 = { package = "embedded-hal", version = "1.0" }
 embedded-hal-async = "1.0"
-embedded-hal-bus = { version = "0.1", features = ["async"] }
+embedded-hal-bus = { version = "0.3.0", features = ["async"] }
 embedded-io-async = { version = "0.6.1", features = ["defmt-03"] }
 embedded-storage = { version = "0.3" }
 static_cell = "2"
-portable-atomic = { version = "1.5", features = ["critical-section"] }
-log = "0.4"
-pio-proc = "0.2"
-pio = "0.2.1"
-rand = { version = "0.8.5", default-features = false }
-embedded-sdmmc = "0.7.0"
+portable-atomic = { version = "1.11.0", features = ["critical-section"] }
+log = "0.4.27"
+pio-proc = "0.3.0"
+pio = "0.3.0"
+rand = { version = "0.9.0", default-features = false }
+embedded-sdmmc = "0.8.1"
 
 
 # [profile.release]
