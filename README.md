@@ -1,3 +1,5 @@
-# rp2040-space-truck
+# rp2040 embassy
 
-An RP2040 embassy test firmware for any puspose.
+To install `probe-rs`:
+
+`cargo install probe-rs-tools --git https://github.com/probe-rs/probe-rs --locked`

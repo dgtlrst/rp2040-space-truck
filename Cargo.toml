@@ -47,7 +47,7 @@ embassy-net-wiznet = { version = "0.1.0", git = "https://github.com/embassy-rs/e
     "defmt",
 ] }
 embassy-futures = { version = "0.1.0", git = "https://github.com/embassy-rs/embassy.git" }
-embassy-usb-logger = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy.git" }
+embassy-usb-logger = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy.git" }
 cyw43 = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy.git", rev = "8803128707b8bd9fc9dcea392a62dfd42aa822d2", features = [
     "defmt",
     "firmware-logs",
@@ -58,8 +58,8 @@ cyw43-pio = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy.gi
     "overclock",
 ] }
 
-defmt = "0.3.10"
-defmt-rtt = "0.4.2"
+defmt = "1.0.1"
+defmt-rtt = "1.0.0"
 fixed = "1.29.0"
 fixed-macro = "1.2.0"
 
@@ -75,7 +75,7 @@ assign-resources = { git = "https://github.com/adamgreig/assign-resources", rev 
 cortex-m = { version = "0.7.6", features = ["inline-asm"] }
 cortex-m-rt = "0.7.5"
 critical-section = "1.2"
-panic-probe = { version = "0.3", features = ["print-defmt"] }
+panic-probe = { version = "1.0.0", features = ["print-defmt"] }
 display-interface-spi = "0.5.0"
 embedded-graphics = "0.8.1"
 st7789 = "0.7.0"
@@ -98,14 +98,8 @@ pio = "0.3.0"
 rand = { version = "0.9.0", default-features = false }
 embedded-sdmmc = "0.8.1"
 
-
-# [profile.release]
-# debug = 2
-
 [profile.dev]
 debug = 2
-# lto = true
-# opt-level = "z"
 
 [patch.crates-io]
 embassy-time = { git = "https://github.com/embassy-rs/embassy.git", rev = "8803128707b8bd9fc9dcea392a62dfd42aa822d2" }

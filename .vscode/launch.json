@@ -18,7 +18,7 @@
                         {
                             "dataFormat": "String",
                             "channelNumber": 0,
-                            "showTimestamps": false
+                            "showTimestamps": true
                         },
                         {
                             "dataFormat": "BinaryLE",
@@ -29,19 +29,10 @@
             ],
             "flashingConfig": {
                 "flashingEnabled": true,
-                "haltAfterReset": false
+                "haltAfterReset": true
             },
-            // "server": "127.0.0.1:50000", // OPTIONAL: For connecting to an existing probe-rs-debugger process.
             "consoleLogLevel": "Debug",
-            "sourceFileMap": {
-                "/rustc/4eb161250": "C:/Users/mchol/.rustup/toolchains/stable-x86_64-pc-windows-gnu/lib/rustlib/src/rust"
-            },
             "wireProtocol": "Swd",
-            // "env": {
-            // "RUST_LOG": "debug",
-            // "DEFMT_LOG": "debug"
-            // },
-            "speed": 10000, // CONFIGURE: Optionally update USB speed
             "runtimeExecutable": "probe-rs",
             "runtimeArgs": [
                 "dap-server"
