@@ -1,29 +1,64 @@
-//! This example test the RP Pico on board LED.
+//! Blinks the LED on a Pico board
 //!
-//! It does not work with the RP Pico W board. See wifi_blinky.rs.
-
+//! This will blink an LED attached to GP22,
 #![no_std]
 #![no_main]
 
+use bsp::entry;
 use defmt::*;
-use embassy_executor::Spawner;
-use embassy_rp::gpio;
-use embassy_time::Timer;
-use gpio::{Level, Output};
-use {defmt_rtt as _, panic_probe as _};
+use defmt_rtt as _;
+use embedded_hal::digital::OutputPin;
+use panic_probe as _;
 
-#[embassy_executor::main]
-async fn main(_spawner: Spawner) {
-    let p = embassy_rp::init(Default::default());
-    let mut led = Output::new(p.PIN_25, Level::Low);
+// Provide an alias for our BSP so we can switch targets quickly.
+use rp_pico as bsp;
+
+use bsp::hal::{
+    clocks::{init_clocks_and_plls, Clock},
+    pac,
+    sio::Sio,
+    watchdog::Watchdog,
+};
+
+#[entry]
+fn main() -> ! {
+    info!("Program start");
+    let mut pac = pac::Peripherals::take().unwrap();
+    let core = pac::CorePeripherals::take().unwrap();
+    let mut watchdog = Watchdog::new(pac.WATCHDOG);
+    let sio = Sio::new(pac.SIO);
+
+    // External high-speed crystal on the pico board is 12Mhz
+    let external_xtal_freq_hz = 12_000_000u32;
+    let clocks = init_clocks_and_plls(
+        external_xtal_freq_hz,
+        pac.XOSC,
+        pac.CLOCKS,
+        pac.PLL_SYS,
+        pac.PLL_USB,
+        &mut pac.RESETS,
+        &mut watchdog,
+    )
+    .ok()
+    .unwrap();
+
+    let mut delay = cortex_m::delay::Delay::new(core.SYST, clocks.system_clock.freq().to_Hz());
+
+    let pins = bsp::Pins::new(
+        pac.IO_BANK0,
+        pac.PADS_BANK0,
+        sio.gpio_bank0,
+        &mut pac.RESETS,
+    );
+
+    let mut led_pin = pins.gpio22.into_push_pull_output();
 
     loop {
-        info!("led on!");
-        led.set_high();
-        Timer::after_secs(1).await;
-
-        info!("led off!");
-        led.set_low();
-        Timer::after_secs(1).await;
+        info!("on!");
+        led_pin.set_high().unwrap();
+        delay.delay_ms(500);
+        info!("off!");
+        led_pin.set_low().unwrap();
+        delay.delay_ms(500);
     }
 }
